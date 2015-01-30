@@ -44,5 +44,6 @@ module CommentsHelper
     Filter.find_all_by_site(site.id).each do |filter|
       return filter.reason if filter.testBody(body)
     end
+    return nil
   end
 end
