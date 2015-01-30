@@ -41,6 +41,6 @@ module CommentsHelper
     end
   end
   def self.checkbody(body)
-    return "Testing" if body.include? " I "
+    return "Bad keyword" if body.include? "cunt" or body.include? "asshole" or body.include? "bitch" or body.include? "nigger" or body.include? "idiot" or body.include? "vagina" or body.include? "dick" or body.include? "fuck"
   end
 end
