@@ -1,31 +1,10 @@
-<h1>Listing comments</h1>
+<h4>Flagged comments for <%= @site.site_name %></h4>
 
 <table>
-  <tr>
-    <th>Site</th>
-    <th>Comment</th>
-    <th>Text</th>
-    <th>User</th>
-    <th>Creation date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @comments.each do |comment| %>
-  <tr>
-    <td><%= comment.site %></td>
-    <td><%= comment.comment_id %></td>
-    <td><%= comment.text %></td>
-    <td><%= comment.user_id %></td>
-    <td><%= comment.creation_date %></td>
-    <td><%= link_to 'Show', comment %></td>
-    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <tr style="border-bottom:1px solid rgba(0,0,0,0.1)">
+    <td style="padding-bottom:10px; padding-top:10px"><%= comment.text.html_safe %> <span class="text-muted">- </span><%= link_to comment.owner_username, "#{}{@site.site_url}/users/#{comment.user_id}" %><span class="text-muted"> <%= time_ago_in_words(comment.creation_date) %> ago</span></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Comment', new_comment_path %>

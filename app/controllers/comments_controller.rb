@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @site = Site.find(params["id"])
+    @comments = Comment.find_all_by_site(@site.id).first(100)
 
     respond_to do |format|
       format.html # index.html.erb
