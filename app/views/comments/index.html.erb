@@ -10,6 +10,8 @@
       <%= link_to comment.owner_username, "#{@site.site_url}/users/#{comment.user_id}" %>
       <%= link_to "#{time_ago_in_words(comment.creation_date)} ago",
       "#{@site.site_url}/posts/comments/#{comment.comment_id}", class: "text-muted" %>
+      <br />
+      <span style="background-color:#ffc; padding:3px; margin-left:20px"><%= comment.flag_reason %></span>
     </td>
   </tr>
 <% end %>

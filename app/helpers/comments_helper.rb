@@ -21,8 +21,21 @@ module CommentsHelper
         c.user_id = comment["owner"]["user_id"]
         c.owner_username = comment["owner"]["display_name"]
         c.creation_date = DateTime.strptime(comment["creation_date"].to_s, "%s")
+
+        flag_reason = self.checkbody(c.text)
+
+        if flag_reason != nil
+          c.is_flagged = true
+          c.flag_reason = flag_reason
+        else
+          c.is_flagged = false
+        end
+
         c.save!
       end
     end
+  end
+  def self.checkbody(body)
+    return "Testing" if body.include? " I "
   end
 end

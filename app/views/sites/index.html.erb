@@ -1,10 +1,10 @@
-<h4>Sites</h4>
+<h4>Sites enabled</h4>
 
 <table style="width:100%">
 
 <% @sites.each do |site| %>
   <tr style="height:75px; border-bottom:1px solid rgba(0,0,0,0.1)">
-    <td><img src="<%= site.icon_url %>" style="margin-top:10px" width="50px" height="50px"/></td>
+    <td style="width:75px"><img src="<%= site.icon_url %>" style="margin-top:10px" width="50px" height="50px"/></td>
     <td><h4><a href="/site/<%= site.id %>/comments"><%= site.site_name %></a></h4></td>
   </tr>
 <% end %>

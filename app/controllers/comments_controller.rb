@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @site = Site.find(params["id"])
-    @comments = Comment.find_all_by_site(@site.id).first(100)
+    @comments = Comment.find_all_by_site_and_is_flagged(@site.id, true).first(100)
 
     respond_to do |format|
       format.html # index.html.erb
