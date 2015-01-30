@@ -1,9 +1,13 @@
 Thermite::Application.routes.draw do
+  resources :filters
+
+
   devise_for :users
 
   root to: "sites#index"
 
   get "site/:id/comments", to: "comments#index"
+  get "site/:id/filters", to: "filters#index"
 
   resources :comments
 

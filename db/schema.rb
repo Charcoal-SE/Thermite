@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150130030402) do
+ActiveRecord::Schema.define(:version => 20150130181353) do
 
   create_table "comments", :force => true do |t|
     t.integer  "site"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20150130030402) do
     t.string   "owner_username"
     t.boolean  "is_flagged"
     t.string   "flag_reason"
+  end
+
+  create_table "filters", :force => true do |t|
+    t.string   "reason"
+    t.integer  "site"
+    t.string   "regex"
+    t.integer  "created_by"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sites", :force => true do |t|

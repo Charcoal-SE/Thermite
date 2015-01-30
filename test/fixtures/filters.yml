@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  reason: MyString
+  site: 1
+  regex: MyString
+  created_by: 1
+
+two:
+  reason: MyString
+  site: 1
+  regex: MyString
+  created_by: 1

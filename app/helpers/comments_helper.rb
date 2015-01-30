@@ -27,7 +27,7 @@ module CommentsHelper
         c.owner_username = comment["owner"]["display_name"]
         c.creation_date = DateTime.strptime(comment["creation_date"].to_s, "%s")
 
-        flag_reason = self.checkbody(c.text)
+        flag_reason = self.checkbody(c.text, site)
 
         if flag_reason != nil
           c.is_flagged = true
@@ -40,15 +40,9 @@ module CommentsHelper
       end
     end
   end
-  def self.checkbody(body)
-    return checkbodywords(body, "Bad keyword", [ "cunt", "asshole", "bitch", "nigger", "idiot", "vagina", "dick", "fuck"])
-  end
-  def self.checkbodywords(body, reason, words)
-    words.each do |word|
-      if body.include? word
-        return reason
-      end
+  def self.checkbody(body, site)
+    Filter.find_all_by_site(site.id).each do |filter|
+      return filter.reason if filter.testBody(body)
     end
-    return nil
   end
 end

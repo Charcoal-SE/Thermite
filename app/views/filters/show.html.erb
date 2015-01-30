@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Reason:</b>
+  <%= @filter.reason %>
+</p>
+
+<p>
+  <b>Site:</b>
+  <%= @filter.site %>
+</p>
+
+<p>
+  <b>Regex:</b>
+  <%= @filter.regex %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @filter.created_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_filter_path(@filter) %> |
+<%= link_to 'Back', filters_path %>

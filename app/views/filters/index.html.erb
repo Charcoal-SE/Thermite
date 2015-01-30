@@ -1,0 +1,28 @@
+<h4>Filters</h4>
+
+<table class="table">
+  <tr>
+    <th>Reason</th>
+    <th>Site</th>
+    <th>Regex</th>
+    <th>Created by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @filters.each do |filter| %>
+  <tr>
+    <td><span style="background-color:#ffc; padding:3px;"><%= filter.reason %></span></td>
+    <td><%= Site.find(filter.site).site_name %></td>
+    <td><code>/<%= filter.regex %>/</code></td>
+    <td><%= User.find(filter.created_by).email %></td>
+    <td><%= link_to 'Show', filter %></td>
+    <td><%= link_to 'Edit', edit_filter_path(filter) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Filter', new_filter_path %>
