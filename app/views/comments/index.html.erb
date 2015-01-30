@@ -4,7 +4,13 @@
 
 <% @comments.each do |comment| %>
   <tr style="border-bottom:1px solid rgba(0,0,0,0.1)">
-    <td style="padding-bottom:10px; padding-top:10px"><%= comment.text.html_safe %> <span class="text-muted">- </span><%= link_to comment.owner_username, "#{}{@site.site_url}/users/#{comment.user_id}" %><span class="text-muted"> <%= time_ago_in_words(comment.creation_date) %> ago</span></td>
+    <td style="padding-bottom:10px; padding-top:10px">
+      <%= comment.text.html_safe %>
+      <span class="text-muted">- </span>
+      <%= link_to comment.owner_username, "#{@site.site_url}/users/#{comment.user_id}" %>
+      <%= link_to "#{time_ago_in_words(comment.creation_date)} ago",
+      "#{@site.site_url}/posts/comments/#{comment.comment_id}", class: "text-muted" %>
+    </td>
   </tr>
 <% end %>
 </table>
