@@ -41,6 +41,14 @@ module CommentsHelper
     end
   end
   def self.checkbody(body)
-    return "Bad keyword" if body.include? "cunt" or body.include? "asshole" or body.include? "bitch" or body.include? "nigger" or body.include? "idiot" or body.include? "vagina" or body.include? "dick" or body.include? "fuck"
+    return checkbodywords(body, "Bad keyword", [ "cunt", "asshole", "bitch", "nigger", "idiot", "vagina", "dick", "fuck"])
+  end
+  def self.checkbodywords(body, reason, words)
+    words.each do |word|
+      if body.include? word
+        return reason
+      end
+    end
+    return nil
   end
 end
