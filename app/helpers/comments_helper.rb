@@ -8,7 +8,7 @@ module CommentsHelper
     require 'net/http'
     require 'date'
 
-    url = URI.parse("http://api.stackexchange.com/2.2/comments?order=desc&sort=creation&site=#{site.site_api_key}&filter=!1zSsisQasVU2D8U8fFA_s&key=1)IcOudTYWhSx5J1)9dmTQ((")
+    url = URI.parse("http://api.stackexchange.com/2.2/comments?order=desc&pagesize=100&sort=creation&site=#{site.site_api_key}&filter=!1zSsisQasVU2D8U8fFA_s&key=1)IcOudTYWhSx5J1)9dmTQ((")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
