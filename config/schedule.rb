@@ -3,7 +3,7 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-every 30.seconds do
+every 1.minutes do
   runner "CommentsHelper.get_comments_for_all_active_sites"
 end
 
