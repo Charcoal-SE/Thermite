@@ -1,25 +1,11 @@
-<h1>Listing sites</h1>
+<h4>Sites</h4>
 
-<table>
-  <tr>
-    <th>Site url</th>
-    <th>Get comments</th>
-    <th>Site api key</th>
-    <th>Site name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<table style="width:100%">
 
 <% @sites.each do |site| %>
-  <tr>
-    <td><%= site.site_url %></td>
-    <td><%= site.get_comments %></td>
-    <td><%= site.site_api_key %></td>
-    <td><%= site.site_name %></td>
-    <td><%= link_to 'Show', site %></td>
-    <td><%= link_to 'Edit', edit_site_path(site) %></td>
-    <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <tr style="height:75px; border-bottom:1px solid rgba(0,0,0,0.1)">
+    <td><img src="<%= site.icon_url %>" style="margin-top:10px" width="50px" height="50px"/></td>
+    <td><h4><a href="/site/<%= site.id %>/comments"><%= site.site_name %></a></h4></td>
   </tr>
 <% end %>
 </table>

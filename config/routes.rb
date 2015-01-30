@@ -3,8 +3,9 @@ Thermite::Application.routes.draw do
 
   root to: "sites#index"
 
-  resources :comments
+  get "site/:id/comments", to: "comments#index"
 
+  resources :comments
 
   resources :sites
 
