@@ -7,14 +7,15 @@ gem 'rails', '3.2.21'
 
 gem 'sqlite3'
 
-gem "twitter-bootstrap-rails"
 gem "awesome_print"
 gem "devise"
+
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'sass-rails', '>= 3.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
