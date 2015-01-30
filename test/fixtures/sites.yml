@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_url: MyString
+  get_comments: 
+  site_api_key: MyString
+  site_name: MyString
+
+two:
+  site_url: MyString
+  get_comments: 
+  site_api_key: MyString
+  site_name: MyString

@@ -1,0 +1,29 @@
+<h1>Listing sites</h1>
+
+<table>
+  <tr>
+    <th>Site url</th>
+    <th>Get comments</th>
+    <th>Site api key</th>
+    <th>Site name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sites.each do |site| %>
+  <tr>
+    <td><%= site.site_url %></td>
+    <td><%= site.get_comments %></td>
+    <td><%= site.site_api_key %></td>
+    <td><%= site.site_name %></td>
+    <td><%= link_to 'Show', site %></td>
+    <td><%= link_to 'Edit', edit_site_path(site) %></td>
+    <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Site', new_site_path %>

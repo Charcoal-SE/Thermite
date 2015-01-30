@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Site url:</b>
+  <%= @site.site_url %>
+</p>
+
+<p>
+  <b>Get comments:</b>
+  <%= @site.get_comments %>
+</p>
+
+<p>
+  <b>Site api key:</b>
+  <%= @site.site_api_key %>
+</p>
+
+<p>
+  <b>Site name:</b>
+  <%= @site.site_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>
