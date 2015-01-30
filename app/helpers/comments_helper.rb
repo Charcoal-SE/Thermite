@@ -1,6 +1,6 @@
 module CommentsHelper
   def self.get_comments_for_all_active_sites
-    Sites.find_all_by_get_comments(true).each do |site|
+    Site.find_all_by_get_comments(true).each do |site|
       self.get_comments_for_site(site)
     end
   end
