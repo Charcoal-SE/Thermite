@@ -16,7 +16,7 @@
     <td><span style="background-color:#ffc; padding:3px;"><%= filter.reason %></span></td>
     <td><%= Site.find(filter.site).site_name %></td>
     <td><code>/<%= filter.regex %>/</code></td>
-    <td><%= User.find(filter.created_by).email %></td>
+    <td><%= User.find(filter.created_by).username || User.find(filter.created_by).email  %></td>
     <td><%= link_to 'Show', filter %></td>
     <td><%= link_to 'Edit', edit_filter_path(filter) %></td>
   </tr>
