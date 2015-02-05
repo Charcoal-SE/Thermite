@@ -9,6 +9,10 @@ Thermite::Application.routes.draw do
   get "site/:id/comments", to: "comments#index"
   get "site/:id/filters", to: "filters#index"
 
+  post "comments/:id/markValid", to: "comments#markValid"
+  post "comments/:id/markInvalid", to: "comments#markInvalid"
+  post "comments/:id/markDeleted", to: "comments#markDeleted"
+
   resources :comments
 
   resources :sites

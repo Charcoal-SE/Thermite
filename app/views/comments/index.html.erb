@@ -11,7 +11,7 @@
       <%= link_to "#{time_ago_in_words(comment.creation_date)} ago",
       "#{@site.site_url}/posts/comments/#{comment.comment_id}", class: "text-muted" %>
       <br />
-      <span style="background-color:#ffc; padding:3px; margin-left:20px"><%= comment.flag_reason %></span>
+      <span style="background-color:#ffc; padding:3px; margin-left:20px"><%= comment.flag_reason %></span> <span style="float:right" data-commentid="<%= comment.id %>"><a href="#" class="valid-button" data-commentid="<%= comment.id %>">valid</a> | <a href="#" class="invalid-button" data-commentid="<%= comment.id %>">invalid</a> | <a href="#" class="already-deleted-button" data-commentid="<%= comment.id %>">deleted</a></span>
     </td>
   </tr>
 <% end %>
