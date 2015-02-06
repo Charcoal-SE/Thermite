@@ -1,0 +1,24 @@
+<% meanings = {1 => "valid", 2 => "invalid", 3 => "already deleted"} %>
+<% colors = {1 => "green", 2 => "red", 3 => "red"} %>
+
+<h3>History</h3>
+
+<table style="width:100%">
+  <% @recent_flags.each do |handling| %>
+    <% comment = Comment.find(handling.comment_id) %>
+    <% user = User.find(handling.user_id) %>
+    <% site = Site.find(comment.site) %>
+    <tr style="border-bottom:1px solid rgba(0,0,0,0.1)">
+      <td style="padding-bottom:10px; padding-top:10px">
+        <%= comment.text.html_safe %>
+        <span class="text-muted">- </span>
+        <%= link_to comment.owner_username, "#{site.site_url}/users/#{comment.user_id}" %>
+        <%= link_to "#{time_ago_in_words(comment.creation_date)} ago",
+        "#{site.site_url}/posts/comments/#{comment.comment_id}", class: "text-muted" %>
+        <br />
+        <span style="background-color:#ffc; padding:3px; margin-left:20px"><%= comment.flag_reason %></span>
+        <span style="float:none">marked <strong><span style="color:<%= colors[handling.result_id] %>"><%= meanings[handling.result_id] %></span></strong> by <%= user.username %></span>
+      </td>
+    </tr>
+  <% end %>
+</table>

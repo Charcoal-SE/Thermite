@@ -1,4 +1,7 @@
 Thermite::Application.routes.draw do
+
+  get "history", to: "history#index"
+
   resources :filters
 
 
