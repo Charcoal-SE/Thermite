@@ -4,8 +4,8 @@
 
 jQuery ->
 
-  $("a.already-deleted-button").click ->
-      event.preventDefault()
+  $("a.already-deleted-button").click (e) ->
+      e.preventDefault()
       comment_id = $(this).attr("data-commentid")
       button = $(this)
       $.ajax({
@@ -18,8 +18,8 @@ jQuery ->
           error:(data) ->
             alert(data)
       })
-  $("a.invalid-button").click ->
-      event.preventDefault()
+  $("a.invalid-button").click (e) ->
+      e.preventDefault()
       comment_id = $(this).attr("data-commentid")
       button = $(this)
       $.ajax({
@@ -32,8 +32,8 @@ jQuery ->
           error:(data) ->
             alert(data)
       })
-  $("a.valid-button").click ->
-      event.preventDefault()
+  $("a.valid-button").click (e) ->
+      e.preventDefault()
       comment_id = $(this).attr("data-commentid")
       button = $(this)
       $.ajax({
