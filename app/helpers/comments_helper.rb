@@ -14,7 +14,7 @@ module CommentsHelper
       http.request(req)
     }
 
-    existing_comments = Comment.select(:comment_id).limit(100).where(site: site.id).map { |c| c.comment_id }
+    existing_comments = Comment.select(:comment_id).limit(100).order("comment_id DESC").where(site: site.id).map { |c| c.comment_id }
 
     comments = JSON.parse(res.body)["items"]
 
