@@ -14,29 +14,33 @@ module CommentsHelper
       http.request(req)
     }
 
+    existing_comments = Comment.select(:comment_id).limit(100).where(site: site.id).map { |c| c.comment_id }
+
     comments = JSON.parse(res.body)["items"]
 
-    comments.each do |comment|
-      puts comment["comment_id"]
-      if Comment.find_by_comment_id(comment["comment_id"]) == nil
-        c=Comment.new
-        c.site = site.id
-        c.comment_id = comment["comment_id"]
-        c.text = comment["body"]
-        c.user_id = comment["owner"]["user_id"]
-        c.owner_username = comment["owner"]["display_name"]
-        c.creation_date = DateTime.strptime(comment["creation_date"].to_s, "%s")
+    ActiveRecord::Base.transaction do
+      comments.each do |comment|
+	puts comment["comment_id"]
+	if not existing_comments.include? comment["comment_id"]
+	  c=Comment.new
+	  c.site = site.id
+	  c.comment_id = comment["comment_id"]
+	  c.text = comment["body"]
+	  c.user_id = comment["owner"]["user_id"]
+	  c.owner_username = comment["owner"]["display_name"]
+	  c.creation_date = DateTime.strptime(comment["creation_date"].to_s, "%s")
 
-        flag_reason = self.checkbody(c.text, site)
+	  flag_reason = self.checkbody(c.text, site)
 
-        if flag_reason != nil
-          c.is_flagged = true
-          c.flag_reason = flag_reason
-        else
-          c.is_flagged = false
-        end
+	  if flag_reason != nil
+	    c.is_flagged = true
+	    c.flag_reason = flag_reason
+	  else
+	    c.is_flagged = false
+	  end
 
-        c.save!
+	  c.save!
+	end
       end
     end
   end
