@@ -16,6 +16,8 @@ module CommentsHelper
 
     existing_comments = Comment.select(:comment_id).limit(100).order("comment_id DESC").where(site: site.id).map { |c| c.comment_id }
 
+    filters = Filter.find_all_by_site(site.id)
+
     comments = JSON.parse(res.body)["items"]
 
     ActiveRecord::Base.transaction do
@@ -30,7 +32,7 @@ module CommentsHelper
 	  c.owner_username = comment["owner"]["display_name"]
 	  c.creation_date = DateTime.strptime(comment["creation_date"].to_s, "%s")
 
-	  flag_reason = self.checkbody(c.text, site)
+	  flag_reason = self.checkbody(c.text, site, filters)
 
 	  if flag_reason != nil
 	    c.is_flagged = true
@@ -44,8 +46,8 @@ module CommentsHelper
       end
     end
   end
-  def self.checkbody(body, site)
-    Filter.find_all_by_site(site.id).each do |filter|
+  def self.checkbody(body, site, filters)
+    filters.each do |filter|
       return filter.reason if filter.testBody(body)
     end
     return nil
