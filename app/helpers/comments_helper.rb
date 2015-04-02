@@ -2,6 +2,8 @@ module CommentsHelper
   def self.get_comments_for_all_active_sites
     Site.find_all_by_get_comments(true).each do |site|
       self.get_comments_for_site(site)
+      site.last_comment_fetch = DateTime.now
+      site.save!
     end
   end
   def self.get_comments_for_site(site)
