@@ -24,27 +24,27 @@ module CommentsHelper
 
     ActiveRecord::Base.transaction do
       comments.each do |comment|
-	puts comment["comment_id"]
-	if not existing_comments.include? comment["comment_id"]
-	  c=Comment.new
-	  c.site = site.id
-	  c.comment_id = comment["comment_id"]
-	  c.text = comment["body"]
-	  c.user_id = comment["owner"]["user_id"]
-	  c.owner_username = comment["owner"]["display_name"]
-	  c.creation_date = DateTime.strptime(comment["creation_date"].to_s, "%s")
+      puts comment["comment_id"]
+        if not existing_comments.include? comment["comment_id"]
+          c=Comment.new
+          c.site = site.id
+          c.comment_id = comment["comment_id"]
+          c.text = comment["body"]
+          c.user_id = comment["owner"]["user_id"]
+          c.owner_username = comment["owner"]["display_name"]
+          c.creation_date = DateTime.strptime(comment["creation_date"].to_s, "%s")
 
-	  flag_reason = self.checkbody(c.text, site, filters)
+          flag_reason = self.checkbody(c.text, site, filters)
 
-	  if flag_reason != nil
-	    c.is_flagged = true
-	    c.flag_reason = flag_reason
-	  else
-	    c.is_flagged = false
-	  end
+          if flag_reason != nil
+            c.is_flagged = true
+            c.flag_reason = flag_reason
+          else
+            c.is_flagged = false
+          end
 
-	  c.save!
-	end
+          c.save!
+        end
       end
     end
   end
