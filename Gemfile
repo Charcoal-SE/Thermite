@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.21'
+gem 'puma'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -39,7 +40,10 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
+gem 'capistrano-rvm'
+gem 'capistrano-rails'
+gem 'capistrano3-puma'
 
 # To use debugger
 # gem 'debugger'
